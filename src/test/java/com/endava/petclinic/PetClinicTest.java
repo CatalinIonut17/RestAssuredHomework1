@@ -1,6 +1,7 @@
 package com.endava.petclinic;
 
 import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 
@@ -51,13 +52,13 @@ public class PetClinicTest {
 
     @Test
     public void postAPet() {
-        given().baseUri("http://api.petclinic.mywire.org")
+        ValidatableResponse responsePostPet = given().baseUri("http://api.petclinic.mywire.org")
                 .port(80)
                 .basePath("/petclinic")
                 .contentType(ContentType.JSON)
                 .body("{\n" +
                         "  \"birthDate\": \"2022/08/01T16:40:12.173Z\",\n" +
-                        "  \"id\": 0,\n" +
+                        "  \"id\": null,\n" +
                         "  \"name\": \"Tasha\",\n" +
                         "  \"owner\": {\n" +
                         "    \"address\": \"Strada Voievozilor\",\n" +
@@ -74,7 +75,7 @@ public class PetClinicTest {
                         "    \"id\": 25,\n" +
                         "    \"name\": \"Dog\"\n" +
                         "  },\n" +
-                        "visits\": [\n" +
+                        "  \"visits\": [\n" +
                         "    {\n" +
                         "      \"date\": \"2022/08/01\",\n" +
                         "      \"description\": \"control\",\n" +
@@ -87,11 +88,22 @@ public class PetClinicTest {
                 .prettyPeek()
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
+
+        Integer petId = responsePostPet.extract().jsonPath().getInt("id");
+        given().baseUri("http://api.petclinic.mywire.org")
+                .port(80)
+                .basePath("/petclinic")
+                .pathParam("petId", petId)
+                .when()
+                .get("/api/pets/{petId}").prettyPeek()
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .body("id", is(petId));
     }
 
     @Test
     public void postAPet2() {
-        given().baseUri("http://api.petclinic.mywire.org")
+        ValidatableResponse responsePostPet2 = given().baseUri("http://api.petclinic.mywire.org")
                 .port(80)
                 .basePath("/petclinic")
                 .contentType(ContentType.JSON)
@@ -127,6 +139,16 @@ public class PetClinicTest {
                 .prettyPeek()
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
+        Integer petId = responsePostPet2.extract().jsonPath().getInt("id");
+        given().baseUri("http://api.petclinic.mywire.org")
+                .port(80)
+                .basePath("/petclinic")
+                .pathParam("petId", petId)
+                .when()
+                .get("/api/pets/{petId}").prettyPeek()
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .body("id", is(petId));
     }
 
     @Test
@@ -161,7 +183,7 @@ public class PetClinicTest {
 
     @Test
     public void postAVisit(){
-        given().baseUri("http://api.petclinic.mywire.org")
+        ValidatableResponse responsePostVisit = given().baseUri("http://api.petclinic.mywire.org")
                 .basePath("/petclinic")
                 .port(80)
                 .contentType(ContentType.JSON)
@@ -197,6 +219,17 @@ public class PetClinicTest {
                 .post("/api/visits").prettyPeek()
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
+
+        Integer visitId = responsePostVisit.extract().jsonPath().getInt("id");
+        given().baseUri("http://api.petclinic.mywire.org")
+                .basePath("/petclinic")
+                .port(80)
+                .pathParam("visitId" , visitId)
+                .when()
+                .get( "/api/visits/{visitId}")
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .body("id", is(visitId));
     }
 
 
