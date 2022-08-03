@@ -15,7 +15,7 @@ public class TwitterTest {
                 .basePath(TwitterReader.getBasePath())
                 .auth().oauth(TwitterReader.getApiKey(), TwitterReader.getApiKeySecret(), TwitterReader.getAccessToken(), TwitterReader.getAccessTokenSecret())
                 .log().all()
-                .queryParam("status", "La o bere cand?")
+                .queryParam("status", "Catalin Dinescu")
                 .header("Content-Type", "application/json")
                 .contentType(ContentType.JSON)
                 .when()
