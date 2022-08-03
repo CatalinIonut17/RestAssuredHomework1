@@ -1,36 +1,33 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.Objects;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Visit {
     private Integer id;
     private String date;
     private String description;
-    //private Pet pet;
-    //private Owner owner;
-    //private PetType Type;
+    private Owner owner;
+    private Pet pet;
+    private Type type;
 
     public Visit() {
     }
 
-    public Visit(String date, String description, Pet pet, Owner owner, PetType type) {
+    public Visit(String date, String description, Owner owner, Pet pet, Type type) {
         this.date = date;
         this.description = description;
-        //this.pet = pet;
-        //this.owner = owner;
-        //Type = type;
+        this.owner = owner;
+        this.pet = pet;
+        this.type = type;
     }
 
-    public Visit(Integer id, String date, String description, Pet pet, Owner owner, PetType type) {
+    public Visit(Integer id, String date, String description, Owner owner, Pet pet, Type type) {
         this.id = id;
         this.date = date;
         this.description = description;
-        //this.pet = pet;
-        //this.owner = owner;
-        //Type = type;
+        this.owner = owner;
+        this.pet = pet;
+        this.type = type;
     }
 
     public Integer getId() {
@@ -57,14 +54,6 @@ public class Visit {
         this.description = description;
     }
 
-    /*public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
     public Owner getOwner() {
         return owner;
     }
@@ -73,26 +62,33 @@ public class Visit {
         this.owner = owner;
     }
 
-    public PetType getType() {
-        return Type;
+    public Pet getPet() {
+        return pet;
     }
 
-    public void setType(PetType type) {
-        Type = type;
-    }*/
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Visit)) return false;
         Visit visit = (Visit) o;
-        return Objects.equals(date, visit.date) && Objects.equals(description, visit.description)
-                /*&& Objects.equals(pet, visit.pet) && Objects.equals(owner, visit.owner) && Objects.equals(Type, visit.Type)*/;
+        return Objects.equals(date, visit.date) && Objects.equals(description, visit.description) && Objects.equals(owner, visit.owner) && Objects.equals(pet, visit.pet) && Objects.equals(type, visit.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, description/*, pet, owner, Type*/);
+        return Objects.hash(date, description, owner, pet, type);
     }
 
     @Override
@@ -100,10 +96,10 @@ public class Visit {
         return "Visit{" +
                 "id=" + id +
                 ", date='" + date + '\'' +
-                ", description='" + description + '\'' +
-                /*", pet=" + pet +
+                ", descrption='" + description + '\'' +
                 ", owner=" + owner +
-                ", Type=" + Type +*/
+                ", pet=" + pet +
+                ", type=" + type +
                 '}';
     }
 }

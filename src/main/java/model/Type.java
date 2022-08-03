@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PetType {
+public class Type {
     private Integer id;
     private String name;
 
-    public PetType() {
+    public Type() {
     }
 
-    public PetType(String name) {
+    public Type(String name) {
         this.name = name;
     }
 
@@ -35,9 +35,9 @@ public class PetType {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PetType)) return false;
-        PetType petType = (PetType) o;
-        return Objects.equals(name, petType.name);
+        if (!(o instanceof Type)) return false;
+        Type type = (Type) o;
+        return Objects.equals(name, type.name);
     }
 
     @Override
