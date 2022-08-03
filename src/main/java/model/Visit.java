@@ -6,28 +6,24 @@ public class Visit {
     private Integer id;
     private String date;
     private String description;
-    private Owner owner;
     private Pet pet;
-    private Type type;
+
 
     public Visit() {
     }
 
-    public Visit(String date, String description, Owner owner, Pet pet, Type type) {
+    public Visit(String date, String description,  Pet pet) {
         this.date = date;
         this.description = description;
-        this.owner = owner;
         this.pet = pet;
-        this.type = type;
+
     }
 
-    public Visit(Integer id, String date, String description, Owner owner, Pet pet, Type type) {
+    public Visit(Integer id, String date, String description,  Pet pet) {
         this.id = id;
         this.date = date;
         this.description = description;
-        this.owner = owner;
         this.pet = pet;
-        this.type = type;
     }
 
     public Integer getId() {
@@ -54,14 +50,6 @@ public class Visit {
         this.description = description;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
     public Pet getPet() {
         return pet;
     }
@@ -70,25 +58,17 @@ public class Visit {
         this.pet = pet;
     }
 
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Visit)) return false;
         Visit visit = (Visit) o;
-        return Objects.equals(date, visit.date) && Objects.equals(description, visit.description) && Objects.equals(owner, visit.owner) && Objects.equals(pet, visit.pet) && Objects.equals(type, visit.type);
+        return Objects.equals(date, visit.date) && Objects.equals(description, visit.description)  && Objects.equals(pet, visit.pet) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, description, owner, pet, type);
+        return Objects.hash(date, description, pet);
     }
 
     @Override
@@ -97,9 +77,7 @@ public class Visit {
                 "id=" + id +
                 ", date='" + date + '\'' +
                 ", descrption='" + description + '\'' +
-                ", owner=" + owner +
                 ", pet=" + pet +
-                ", type=" + type +
                 '}';
     }
 }
