@@ -7,7 +7,7 @@ import utils.TwitterReader;
 
 import static io.restassured.RestAssured.given;
 
-public class PostTwitter {
+public class TwitterTest {
 
     @Test
     public void createATweet() {
@@ -15,7 +15,7 @@ public class PostTwitter {
                 .basePath(TwitterReader.getBasePath())
                 .auth().oauth(TwitterReader.getApiKey(), TwitterReader.getApiKeySecret(), TwitterReader.getAccessToken(), TwitterReader.getAccessTokenSecret())
                 .log().all()
-                .queryParam("status", "Catalin Dinescu")
+                .queryParam("status", "La o bere cand?")
                 .header("Content-Type", "application/json")
                 .contentType(ContentType.JSON)
                 .when()

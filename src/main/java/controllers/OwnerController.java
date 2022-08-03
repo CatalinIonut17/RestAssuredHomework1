@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import model.Owner;
 
 public class OwnerController {
-    public static Owner genereteNewRandomOwner(){
+    public static Owner generateNewRandomOwner(){
         Faker faker = new Faker();
 
         Owner owner = new Owner();

@@ -8,29 +8,27 @@ import java.util.Objects;
 public class Pet {
     private Integer id;
     private String name;
-    private String brithDate;
+    private String birthDate;
     private Owner owner;
-    private PetType type;
-    private Visit visit;
+    private Type type;
 
     public Pet() {
     }
 
-    public Pet(String name, String brithDate, Owner owner, PetType type, Visit visit) {
+    public Pet(String name, String birthDate, Owner owner, Type type) {
         this.name = name;
-        this.brithDate = brithDate;
+        this.birthDate = birthDate;
         this.owner = owner;
         this.type = type;
-        this.visit = visit;
+
     }
 
-    public Pet(Integer id, String name, String brithDate, Owner owner, PetType type, Visit visit) {
+    public Pet(Integer id, String name, String birthDate, Owner owner, Type type) {
         this.id = id;
         this.name = name;
-        this.brithDate = brithDate;
+        this.birthDate = birthDate;
         this.owner = owner;
         this.type = type;
-        this.visit = visit;
     }
 
     public Integer getId() {
@@ -49,12 +47,12 @@ public class Pet {
         this.name = name;
     }
 
-    public String getBrithDate() {
-        return brithDate;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setBrithDate(String brithDate) {
-        this.brithDate = brithDate;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Owner getOwner() {
@@ -65,33 +63,26 @@ public class Pet {
         this.owner = owner;
     }
 
-    public PetType getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(PetType type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
-    public Visit getVisit() {
-        return visit;
-    }
-
-    public void setVisit(Visit visit) {
-        this.visit = visit;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Pet)) return false;
         Pet pet = (Pet) o;
-        return Objects.equals(name, pet.name) && Objects.equals(brithDate, pet.brithDate) && Objects.equals(owner, pet.owner) && Objects.equals(type, pet.type) && Objects.equals(visit, pet.visit);
+        return Objects.equals(name, pet.name) && Objects.equals(birthDate, pet.birthDate) && Objects.equals(owner, pet.owner) && Objects.equals(type, pet.type) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, brithDate, owner, type, visit);
+        return Objects.hash(name, birthDate, owner, type);
     }
 
     @Override
@@ -99,10 +90,9 @@ public class Pet {
         return "Pet{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", brithDate='" + brithDate + '\'' +
+                ", brithDate='" + birthDate + '\'' +
                 ", owner=" + owner +
                 ", type=" + type +
-                ", visit=" + visit +
                 '}';
     }
 }
