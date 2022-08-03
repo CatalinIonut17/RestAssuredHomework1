@@ -1,4 +1,4 @@
-package com.endava.petclinic;
+package com.endava.petclinic.day1;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
@@ -17,12 +17,12 @@ public class PetClinicTest {
                 .port(80)
                 .contentType(ContentType.JSON)
                 .body("{\n" +
-                        "  \"address\": \"Strada Voievozilor\",\n" +
+                        "  \"address\": \"Strada Apusului\",\n" +
                         "  \"city\": \"Bucuresti\",\n" +
-                        "  \"firstName\": \"Catalin-Ionut\",\n" +
+                        "  \"firstName\": \"Cristinel\",\n" +
                         "  \"id\": null,\n" +
-                        "  \"lastName\": \"Dinescu\",\n" +
-                        "  \"telephone\": \"0725753159\"\n" +
+                        "  \"lastName\": \"Oprescu\",\n" +
+                        "  \"telephone\": \"0789758557\"\n" +
                         "}")
                 .when()
                 .post("/api/owners")
@@ -57,22 +57,22 @@ public class PetClinicTest {
                 .basePath("/petclinic")
                 .contentType(ContentType.JSON)
                 .body("{\n" +
-                        "  \"birthDate\": \"2022/08/01T16:40:12.173Z\",\n" +
+                        "  \"birthDate\": \"2022/08/01\",\n" +
                         "  \"id\": null,\n" +
                         "  \"name\": \"Tasha\",\n" +
                         "  \"owner\": {\n" +
-                        "    \"address\": \"Strada Voievozilor\",\n" +
+                        "    \"address\": \"Strada Apusului\",\n" +
                         "    \"city\": \"Bucuresti\",\n" +
-                        "    \"firstName\": \"Catalin-Ionut\",\n" +
-                        "    \"id\": 94,\n" +
-                        "    \"lastName\": \"Dinescu\",\n" +
+                        "    \"firstName\": \"Cristinel\",\n" +
+                        "    \"id\": 221,\n" +
+                        "    \"lastName\": \"Oprescu\",\n" +
                         "    \"pets\": [\n" +
                         "      null\n" +
                         "    ],\n" +
-                        "    \"telephone\": \"0725753159\"\n" +
+                        "    \"telephone\": \"0789758557\"\n" +
                         "  },\n" +
                         "  \"type\": {\n" +
-                        "    \"id\": 25,\n" +
+                        "    \"id\": 36,\n" +
                         "    \"name\": \"Dog\"\n" +
                         "  },\n" +
                         "  \"visits\": [\n" +
@@ -108,14 +108,14 @@ public class PetClinicTest {
                 .basePath("/petclinic")
                 .contentType(ContentType.JSON)
                 .body("{\n" +
-                        "  \"birthDate\": \"2018/08/26T16:40:12.173Z\",\n" +
+                        "  \"birthDate\": \"2017/08/26\",\n" +
                         "  \"id\": null,\n" +
-                        "  \"name\": \"Leksy\",\n" +
+                        "  \"name\": \"Sparky\",\n" +
                         "  \"owner\": {\n" +
                         "    \"address\": \"Strada Voievozilor\",\n" +
                         "    \"city\": \"Bucuresti\",\n" +
                         "    \"firstName\": \"Catalin-Ionut\",\n" +
-                        "    \"id\": 94,\n" +
+                        "    \"id\": 27,\n" +
                         "    \"lastName\": \"Dinescu\",\n" +
                         "    \"pets\": [\n" +
                         "      null\n" +
@@ -123,7 +123,7 @@ public class PetClinicTest {
                         "    \"telephone\": \"0725753159\"\n" +
                         "  },\n" +
                         "  \"type\": {\n" +
-                        "    \"id\": 25,\n" +
+                        "    \"id\": 10,\n" +
                         "    \"name\": \"Dog\"\n" +
                         "  },\n" +
                         "  \"visits\": [\n" +
@@ -140,6 +140,7 @@ public class PetClinicTest {
                 .then()
                 .statusCode(HttpStatus.SC_CREATED);
         Integer petId = responsePostPet2.extract().jsonPath().getInt("id");
+
         given().baseUri("http://api.petclinic.mywire.org")
                 .port(80)
                 .basePath("/petclinic")
@@ -193,13 +194,13 @@ public class PetClinicTest {
                         "  \"id\": null,\n" +
                         "  \"pet\": {\n" +
                         "    \"birthDate\": \"2021/07/11\",\n" +
-                        "    \"id\": 103,\n" +
+                        "    \"id\": 44,\n" +
                         "    \"name\": \"Sparky\",\n" +
                         "    \"owner\": {\n" +
                         "      \"address\": \"Strada Voievozilor\",\n" +
                         "      \"city\": \"Bucuresti\",\n" +
                         "      \"firstName\": \"Catalin-Ionut\",\n" +
-                        "      \"id\": 94,\n" +
+                        "      \"id\": 27,\n" +
                         "      \"lastName\": \"Dinescu\",\n" +
                         "      \"pets\": [\n" +
                         "        null\n" +
@@ -207,7 +208,7 @@ public class PetClinicTest {
                         "      \"telephone\": \"0725753159\"\n" +
                         "    },\n" +
                         "    \"type\": {\n" +
-                        "      \"id\": 25,\n" +
+                        "      \"id\": 10,\n" +
                         "      \"name\": \"Dog\"\n" +
                         "    },\n" +
                         "    \"visits\": [\n" +
